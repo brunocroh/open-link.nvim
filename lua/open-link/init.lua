@@ -21,13 +21,6 @@ function M.setup(opts)
   vim.keymap.set('v', opts.key or defaults.key, open_link, {
     desc = 'Open selected url in the browser'
   })
-
-vim.api.nvim_create_user_command("ReloadPlugin", function()
-  package.loaded['open-link'] = nil
-  require('open-link').setup()
-  print('open link is reloaded')
-end, {})
-
 end
 
 return M
