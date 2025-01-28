@@ -1,5 +1,5 @@
 local util = require "open-link.util"
-local M = {}  -- This should be at the top
+local M = {}
 
 local defaultBrowser = {
   '/usr/bin/open', '-a',  '/Applications/Google Chrome.app/'
