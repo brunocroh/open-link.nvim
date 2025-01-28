@@ -1,6 +1,6 @@
 local M = {}
 
---- Get sleeected text in visual mode
+--- Get selected text in visual mode
 --- @return string|string[]
 function M.get_visual_selection()
   local vstart = vim.fn.getpos("'<")
