@@ -2,7 +2,7 @@ local util = require "open-link.util"
 local M = {}
 
 local defaultBrowser = {
-  '/usr/bin/open', '-a',  '/Applications/Google Chrome.app/'
+  '/usr/bin/open', '-a', '/Applications/Google Chrome.app/'
 }
 
 local open_link = function()
