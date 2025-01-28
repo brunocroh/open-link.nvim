@@ -1,12 +1,10 @@
 # Open Link Neovim Plugin
 
-A simple Neovim plugin to open selected text as URLs in Google Chrome.
+A simple Neovim plugin to open selected text as URLs in your browser.
 
 ## Features
 
-- Open selected text/URLs directly in Google Chrome browser
-- Configurable keybinding
-- Visual mode selection support
+- Open selected URLs directly in your browser
 
 ## Installation
 
@@ -17,9 +15,11 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
   'brunocroh/open-link.nvim',
   config = function()
     require('open-link').setup({
-      -- optional: change default keybinding
-      key = '<leader>go'
+      browserCmd = { '/usr/bin/open', '-a',  '/Applications/Firefox.app/' }
     })
+
+    -- Map open link to comando <leader>go in visual mode
+    vim.keymap.set({ "v" }, "<leader>go", "<cmd>OpenLink<cr>", { desc = "Open link in the browser" })
   end
 }
 ```
@@ -40,16 +40,6 @@ use {
 1. Enter visual mode and select text/URL
 2. Press `<leader>go` (or your configured keybinding)
 3. The selected text will open in Google Chrome
-
-## Configuration
-
-Default config:
-
-```lua
-require('open-link').setup({
-  key = '<leader>go' -- default keybinding
-})
-```
 
 ## Requirements
 

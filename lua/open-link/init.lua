@@ -1,24 +1,27 @@
 local utils = require "open-link.utils"
 local M = {}  -- This should be at the top
 
+local defaultBrowser = {
+  '/usr/bin/open', '-a',  '/Applications/Google Chrome.app/'
+}
 
 local open_link = function()
+  local execCmd = defaultBrowser
   local result = utils.get_visual_selection()
   if result and result[1] then
-    vim.fn.jobstart({'/usr/bin/open', '-a',  '/Applications/Google Chrome.app/', result[1]})
+    table.insert(execCmd, result[1])
+    vim.fn.jobstart(execCmd)
   end
 end
 
 --- Setup function for open-link plugin
---- @param opts? {key?: string}
+--- @param opts? {browserCmd?: string[]}
 function M.setup(opts)
   opts = opts or {}
 
-  local defaults = {
-    key = '<leader>go',
-  }
+  defaultBrowser = opts.browserCmd or defaultBrowser
 
-  vim.keymap.set('v', opts.key or defaults.key, open_link, {
+  vim.api.nvim_create_user_command('OpenLink', open_link, {
     desc = 'Open selected url in the browser'
   })
 end
