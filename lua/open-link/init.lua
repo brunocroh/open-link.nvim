@@ -1,4 +1,4 @@
-local utils = require "open-link.utils"
+local util = require "open-link.util"
 local M = {}  -- This should be at the top
 
 local defaultBrowser = {
@@ -7,7 +7,7 @@ local defaultBrowser = {
 
 local open_link = function()
   local execCmd = defaultBrowser
-  local result = utils.get_visual_selection()
+  local result = util.get_visual_selection()
   if result and result[1] then
     table.insert(execCmd, result[1])
     vim.fn.jobstart(execCmd)
