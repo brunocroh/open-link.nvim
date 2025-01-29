@@ -12,4 +12,9 @@ function M.get_visual_selection()
   return vim.fn.getline(line_start, line_end)
 end
 
+function M.extract_url(text)
+  local pattern = "https?://[%w-_%.%?%.:/%+=&]+"
+  return string.match(text, pattern)
+end
+
 return M

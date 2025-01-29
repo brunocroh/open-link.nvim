@@ -7,11 +7,25 @@ local defaultBrowser = {
 
 local open_link = function()
   local execCmd = defaultBrowser
-  local result = util.get_visual_selection()
-  if result and result[1] then
-    table.insert(execCmd, result[1])
-    vim.fn.jobstart(execCmd)
+  local lines = util.get_visual_selection()
+
+
+  if type(lines) ~= 'string' then
+    lines = table.concat(lines, " ")
   end
+
+  local url = util.extract_url(lines)
+
+
+  vim.print('HERE WE GO')
+  vim.print(url)
+
+  if not url then
+    vim.notify('link not found', vim.log.levels.INFO)
+  end
+
+  table.insert(execCmd, url)
+  vim.fn.jobstart(execCmd)
 end
 
 --- Setup function for open-link plugin
@@ -22,7 +36,7 @@ function M.setup(opts)
   defaultBrowser = opts.browserCmd or defaultBrowser
 
   vim.api.nvim_create_user_command('OpenLink', open_link, {
-    desc = 'Open selected url in the browser'
+    desc = 'Teste Open selected url in the browser'
   })
 end
 
