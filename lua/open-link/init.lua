@@ -36,7 +36,7 @@ function M.setup(opts)
   defaultBrowser = opts.browserCmd or defaultBrowser
 
   vim.api.nvim_create_user_command('OpenLink', open_link, {
-    desc = 'Teste Open selected url in the browser'
+    desc = 'Open selected url in the browser'
   })
 end
 
