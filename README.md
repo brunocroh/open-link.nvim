@@ -15,10 +15,11 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
   'brunocroh/open-link.nvim',
   config = function()
     require('open-link').setup({
-      browserCmd = { '/usr/bin/open', '-a',  '/Applications/Firefox.app/' }
+      -- put your browser cmd here, i.e:
+      -- browserCmd = { '/usr/bin/open', '-a',  '/Applications/Firefox.app/' }
     })
 
-    -- Map open link to comando <leader>go in visual mode
+    -- Map open link to command <leader>go in visual mode
     vim.keymap.set({ "v" }, "<leader>go", "<cmd>OpenLink<cr>", { desc = "Open link in the browser" })
   end
 }
